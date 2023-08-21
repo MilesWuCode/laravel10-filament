@@ -10,4 +10,15 @@ class User extends Model
     use HasFactory;
 
     protected $connection = 'main';
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'email_verified_at',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
