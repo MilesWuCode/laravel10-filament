@@ -1,6 +1,9 @@
 # Laravel10 Filament3
 
 ```sh
-# resource
-php artisan make:filament-resource User
+# 用戶
+php artisan make:filament-user
+
+# 資源
+php artisan make:filament-resource
 ```

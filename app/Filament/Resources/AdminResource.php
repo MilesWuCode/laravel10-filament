@@ -11,10 +11,25 @@ use Filament\Tables\Table;
 
 class AdminResource extends Resource
 {
+    // 資料源
     protected static ?string $model = Admin::class;
 
+    // 圖示
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // 群組
+    protected static ?string $navigationGroup = 'System';
+
+    // 名稱
+    protected static ?string $modelLabel = 'Admin';
+
+    // 複數名
+    protected static ?string $pluralModelLabel = 'Admins';
+
+    // 順位
+    protected static ?int $navigationSort = 1;
+
+    // 表單
     public static function form(Form $form): Form
     {
         return $form
@@ -23,6 +38,7 @@ class AdminResource extends Resource
             ]);
     }
 
+    // 表格
     public static function table(Table $table): Table
     {
         return $table
@@ -53,6 +69,7 @@ class AdminResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    // 可以直接放到bulkActions,但東西會變的很多
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
