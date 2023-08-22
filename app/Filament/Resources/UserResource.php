@@ -19,6 +19,23 @@ class UserResource extends Resource
     // 圖示
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // 群組
+    protected static ?string $navigationGroup = 'Member';
+
+    protected static ?int $navigationGroupSort = 1;
+
+    // 名稱
+    protected static ?string $modelLabel = 'User';
+
+    // 複數名
+    protected static ?string $pluralModelLabel = 'Users';
+
+    // 主要顯示欄位
+    protected static ?string $recordTitleAttribute = 'name';
+
+    // 順位
+    protected static ?int $navigationSort = 1;
+
     // 表單
     public static function form(Form $form): Form
     {
@@ -84,6 +101,10 @@ class UserResource extends Resource
                 Tables\Actions\DeleteAction::make(),
                 // Tables\Actions\ForceDeleteAction::make(),
                 // Tables\Actions\RestoreAction::make(),
+
+                // wip
+                // Tables\Actions\AssociateAction::make()
+                //     ->recordSelectSearchColumns(['id', 'name']),
             ])
             // 批量按鈕
             ->bulkActions([
