@@ -36,6 +36,7 @@ class UserResource extends Resource
                     ->label('密碼')
                     ->password()
                     ->required()
+                    ->minLength(8)
                     ->maxLength(255),
             ]);
     }
