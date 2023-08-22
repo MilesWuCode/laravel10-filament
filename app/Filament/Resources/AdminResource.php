@@ -86,7 +86,6 @@ class AdminResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    // 可以直接放到bulkActions,但東西會變的很多
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])

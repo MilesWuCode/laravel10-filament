@@ -42,4 +42,14 @@ class EditUser extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    // 顯示操作按鈕
+    protected function getActions(): array
+    {
+        return [
+            Actions\DeleteAction::make(),
+            // Actions\ForceDeleteAction::make(),
+            // Actions\RestoreAction::make(),
+        ];
+    }
 }

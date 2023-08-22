@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function delete(Admin $admin, User $model): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -64,9 +64,25 @@ class UserPolicy
     }
 
     /**
+     * Filament multiple records restore
+     */
+    public function restoreAny(Admin $admin): bool
+    {
+        return false;
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(Admin $admin, User $model): bool
+    {
+        return false;
+    }
+
+    /**
+     * Filament multiple records permanently delete
+     */
+    public function forceDeleteAny(Admin $admin): bool
     {
         return false;
     }
