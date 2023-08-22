@@ -13,10 +13,13 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserResource extends Resource
 {
+    // 資料源
     protected static ?string $model = User::class;
 
+    // 圖示
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // 表單
     public static function form(Form $form): Form
     {
         return $form
@@ -99,6 +102,7 @@ class UserResource extends Resource
         ];
     }
 
+    // 取得定義的頁面
     public static function getPages(): array
     {
         return [

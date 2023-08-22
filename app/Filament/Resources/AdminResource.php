@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdminResource\Pages;
 use App\Models\Admin;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -34,7 +35,23 @@ class AdminResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('名稱')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('email')
+                    ->label('信箱')
+                    ->email()
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('password')
+                    ->label('密碼')
+                    ->password()
+                    ->required()
+                    ->minLength(8)
+                    ->maxLength(255),
             ]);
     }
 
