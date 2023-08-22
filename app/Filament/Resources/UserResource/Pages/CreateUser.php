@@ -74,20 +74,20 @@ class CreateUser extends CreateRecord
         // Runs before the form fields are saved to the database.
 
         // 發送通知
-        Notification::make()
-            ->warning() // 提示方式(danger,info,success,warning),或是不使用
-            ->title('Notification Title')
-            ->body('Notification Body')
-            ->persistent() // 停留
-            ->actions([
-                Action::make('Go')
-                    ->button()
-                    ->url('/', shouldOpenInNewTab: true),
-            ])
-            ->send();
+        // Notification::make()
+        //     ->warning() // 提示方式(danger,info,success,warning),或是不使用
+        //     ->title('Notification Title')
+        //     ->body('Notification Body')
+        //     ->persistent() // 停留
+        //     ->actions([
+        //         Action::make('Go')
+        //             ->button()
+        //             ->url('/', shouldOpenInNewTab: true),
+        //     ])
+        //     ->send();
 
         // 立即停止
-        $this->halt();
+        // $this->halt();
     }
 
     protected function afterCreate(): void
