@@ -20,15 +20,15 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // 群組
-    protected static ?string $navigationGroup = 'Member';
+    protected static ?string $navigationGroup = '會員管理';
 
     protected static ?int $navigationGroupSort = 1;
 
     // 名稱
-    protected static ?string $modelLabel = 'User';
+    protected static ?string $modelLabel = '用戶';
 
     // 複數名
-    protected static ?string $pluralModelLabel = 'Users';
+    protected static ?string $pluralModelLabel = '用戶';
 
     // 主要顯示欄位
     protected static ?string $recordTitleAttribute = 'name';

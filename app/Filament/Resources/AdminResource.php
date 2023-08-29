@@ -19,13 +19,13 @@ class AdminResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // 群組
-    protected static ?string $navigationGroup = 'System';
+    protected static ?string $navigationGroup = '系統';
 
     // 名稱
-    protected static ?string $modelLabel = 'Admin';
+    protected static ?string $modelLabel = '管理員';
 
     // 複數名
-    protected static ?string $pluralModelLabel = 'Admins';
+    protected static ?string $pluralModelLabel = '管理員';
 
     // 順位
     protected static ?int $navigationSort = 1;

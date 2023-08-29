@@ -18,7 +18,7 @@ sail php artisan k:g
 # 資料庫遷移
 sail php artisan migrate
 
-# 用戶
+# 新增管理員
 sail php artisan make:filament-user
 
 # 關閉
@@ -28,7 +28,7 @@ sail down
 ## 常用指令
 
 ```sh
-# 用戶
+# 新增管理員
 php artisan make:filament-user
 
 # 資源
