@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(Admin $admin): bool
     {
-        return true;
+        return $admin->hasPermissionTo('用戶-任意檢視');
     }
 
     /**
@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(Admin $admin, User $model): bool
     {
-        return true;
+        return $admin->hasPermissionTo('用戶-檢視');
     }
 
     /**
@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function create(Admin $admin): bool
     {
-        return true;
+        return $admin->hasPermissionTo('用戶-新增');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(Admin $admin, User $model): bool
     {
-        return true;
+        return $admin->hasPermissionTo('用戶-更新');
     }
 
     /**
@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function delete(Admin $admin, User $model): bool
     {
-        return true;
+        return $admin->hasPermissionTo('用戶-刪除');
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function deleteAny(Admin $admin): bool
     {
-        return false;
+        return $admin->hasPermissionTo('用戶-刪除');
     }
 
     /**
@@ -60,7 +60,7 @@ class UserPolicy
      */
     public function restore(Admin $admin, User $model): bool
     {
-        return false;
+        return $admin->hasPermissionTo('用戶-還原刪除');
     }
 
     /**
@@ -68,7 +68,7 @@ class UserPolicy
      */
     public function restoreAny(Admin $admin): bool
     {
-        return false;
+        return $admin->hasPermissionTo('用戶-任意還原刪除');
     }
 
     /**
@@ -76,7 +76,7 @@ class UserPolicy
      */
     public function forceDelete(Admin $admin, User $model): bool
     {
-        return false;
+        return $admin->hasPermissionTo('用戶-強制刪除');
     }
 
     /**
@@ -84,6 +84,6 @@ class UserPolicy
      */
     public function forceDeleteAny(Admin $admin): bool
     {
-        return false;
+        return $admin->hasPermissionTo('用戶-任意強制刪除');
     }
 }

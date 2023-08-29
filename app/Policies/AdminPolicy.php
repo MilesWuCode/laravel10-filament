@@ -11,7 +11,7 @@ class AdminPolicy
      */
     public function viewAny(Admin $admin): bool
     {
-        return true;
+        return $admin->hasPermissionTo('管理員-任意檢視');
     }
 
     /**
@@ -19,7 +19,7 @@ class AdminPolicy
      */
     public function view(Admin $admin, Admin $data): bool
     {
-        return $admin->id === $data->id;
+        return $admin->hasPermissionTo('管理員-檢視');
     }
 
     /**
@@ -27,7 +27,7 @@ class AdminPolicy
      */
     public function create(Admin $admin): bool
     {
-        return false;
+        return $admin->hasPermissionTo('管理員-新增');
     }
 
     /**
@@ -35,7 +35,7 @@ class AdminPolicy
      */
     public function update(Admin $admin, Admin $data): bool
     {
-        return $admin->id === $data->id;
+        return $admin->hasPermissionTo('管理員-更新');
     }
 
     /**
@@ -43,7 +43,7 @@ class AdminPolicy
      */
     public function delete(Admin $admin, Admin $data): bool
     {
-        return false;
+        return $admin->hasPermissionTo('管理員-刪除');
     }
 
     /**
@@ -51,7 +51,7 @@ class AdminPolicy
      */
     public function deleteAny(Admin $admin): bool
     {
-        return false;
+        return $admin->hasPermissionTo('管理員-任意刪除');
     }
 
     /**
@@ -59,7 +59,15 @@ class AdminPolicy
      */
     public function restore(Admin $admin, Admin $data): bool
     {
-        return false;
+        return $admin->hasPermissionTo('管理員-還原刪除');
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(Admin $admin, Admin $data): bool
+    {
+        return $admin->hasPermissionTo('管理員-任意還原刪除');
     }
 
     /**
@@ -67,6 +75,14 @@ class AdminPolicy
      */
     public function forceDelete(Admin $admin, Admin $data): bool
     {
-        return false;
+        return $admin->hasPermissionTo('管理員-強制刪除');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(Admin $admin, Admin $data): bool
+    {
+        return $admin->hasPermissionTo('管理員-任意強制刪除');
     }
 }
