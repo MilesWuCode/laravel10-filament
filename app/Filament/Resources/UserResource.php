@@ -5,9 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -58,6 +63,16 @@ class UserResource extends Resource
                     ->required()
                     ->minLength(8)
                     ->maxLength(255),
+
+                SpatieMediaLibraryFileUpload::make('avatar')
+                    ->label('頭像')
+                    ->collection('avatar')
+                    // ->multiple() // 多個檔案
+                    // ->enableReordering() // 排序
+                    // ->customProperties(['key' => 'val']) // 客制參數
+                    // ->responsiveImages() // 內訂響應式圖像
+                    // ->conversion('thumb') // 轉換
+                    ->disk('minio-medialibrary'),
             ]);
     }
 
@@ -71,6 +86,10 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')
                     ->sortable(),
+
+                SpatieMediaLibraryImageColumn::make('avatar')
+                    ->label('頭像')
+                    ->collection('avatar'),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('名稱')
@@ -137,5 +156,19 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
             'view' => Pages\ViewUser::route('/{record}'),
         ];
+    }
+
+    // 自訂義view
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('name'),
+
+                SpatieMediaLibraryImageEntry::make('avatar')
+                    ->collection('avatar')
+                    // ->conversion('thumb') // 使用縮圖
+                    ->disk('minio-medialibrary'),
+            ]);
     }
 }
