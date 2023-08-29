@@ -21,6 +21,9 @@ sail php artisan migrate
 # 新增管理員
 sail php artisan make:filament-user
 
+# 新增預設權限
+sail php artisan db:seed DefaultPermissionSeeder
+
 # 關閉
 sail down
 ```
@@ -43,4 +46,20 @@ php artisan make:filament-page ViewUser --resource=UserResource --type=ViewRecor
 # 更新
 composer update
 php artisan filament:upgrade
+```
+
+## 語系檔案
+
+```sh
+php artisan vendor:publish --tag=filament-panels-translations
+
+php artisan vendor:publish --tag=filament-actions-translations
+
+php artisan vendor:publish --tag=filament-forms-translations
+
+php artisan vendor:publish --tag=filament-notifications-translations
+
+php artisan vendor:publish --tag=filament-tables-translations
+
+php artisan vendor:publish --tag=filament-translations
 ```

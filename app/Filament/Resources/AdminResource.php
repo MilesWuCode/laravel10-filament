@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AdminResource\Pages;
 use App\Models\Admin;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -46,12 +47,7 @@ class AdminResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('password')
-                    ->label('密碼')
-                    ->password()
-                    ->required()
-                    ->minLength(8)
-                    ->maxLength(255),
+                Select::make('roles')->multiple()->relationship('roles', 'name'),
             ]);
     }
 
