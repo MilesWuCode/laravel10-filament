@@ -11,6 +11,7 @@ class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    // 放置Actions在表單上方
     protected function getHeaderActions(): array
     {
         return [
@@ -38,8 +39,11 @@ class EditUser extends EditRecord
         return $data;
     }
 
+    // Customizing redirects
+    // 自訂返回頁,列表,
     protected function getRedirectUrl(): string
     {
+        // 返回資源主頁
         return $this->getResource()::getUrl('index');
     }
 
