@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Admin;
-use ASpatie\Permission\Models\Role;
+use Spatie\Permission\Models\Role;
 
 class RolePolicy
 {

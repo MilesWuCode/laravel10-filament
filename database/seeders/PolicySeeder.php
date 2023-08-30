@@ -9,7 +9,7 @@ class PolicySeeder extends Seeder
 {
     /**
      * 新增權限
-     * 請參考DefaultPermissionSeeder
+     * 請參考DefaultSeeder
      * Run the database seeds.
      */
     public function run(): void
