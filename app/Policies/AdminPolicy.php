@@ -47,6 +47,22 @@ class AdminPolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(Admin $admin, Admin $data): bool
+    {
+        return $admin->hasPermissionTo('管理員-還原刪除');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(Admin $admin, Admin $data): bool
+    {
+        return $admin->hasPermissionTo('管理員-強制刪除');
+    }
+
+    /**
      * Filament multiple records delete
      */
     public function deleteAny(Admin $admin): bool
@@ -57,25 +73,9 @@ class AdminPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(Admin $admin, Admin $data): bool
-    {
-        return $admin->hasPermissionTo('管理員-還原刪除');
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
     public function restoreAny(Admin $admin, Admin $data): bool
     {
         return $admin->hasPermissionTo('管理員-任意還原刪除');
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(Admin $admin, Admin $data): bool
-    {
-        return $admin->hasPermissionTo('管理員-強制刪除');
     }
 
     /**

@@ -48,14 +48,6 @@ class UserPolicy
     }
 
     /**
-     * Filament multiple records delete
-     */
-    public function deleteAny(Admin $admin): bool
-    {
-        return $admin->hasPermissionTo('用戶-刪除');
-    }
-
-    /**
      * Determine whether the user can restore the model.
      */
     public function restore(Admin $admin, User $model): bool
@@ -64,19 +56,27 @@ class UserPolicy
     }
 
     /**
-     * Filament multiple records restore
-     */
-    public function restoreAny(Admin $admin): bool
-    {
-        return $admin->hasPermissionTo('用戶-任意還原刪除');
-    }
-
-    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(Admin $admin, User $model): bool
     {
         return $admin->hasPermissionTo('用戶-強制刪除');
+    }
+
+    /**
+     * Filament multiple records delete
+     */
+    public function deleteAny(Admin $admin): bool
+    {
+        return $admin->hasPermissionTo('用戶-任意刪除');
+    }
+
+    /**
+     * Filament multiple records restore
+     */
+    public function restoreAny(Admin $admin): bool
+    {
+        return $admin->hasPermissionTo('用戶-任意還原刪除');
     }
 
     /**
