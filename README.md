@@ -1,16 +1,33 @@
 # Laravel10 Filament3
 
+-   https://github.com/MilesWuCode/nuxt3-demo
+-   https://github.com/MilesWuCode/laravel10-filament3
+-   https://github.com/MilesWuCode/laravel10-demo
+
 ## 初始化
 
 ```sh
 # 安裝composer套件
 composer install
 
+# 環境變數
+cp .env.example .env
+
+# shell加入sail
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
+# database...wip
+mysql -u root -p
+CREATE DATABASE IF NOT EXISTS `laravel_filament3`;
+GRANT ALL PRIVILEGES ON  `laravel_filament3`.* TO 'sail'@'%';
+
 # 容器啓動
 sail up -d
 
-# 環境變數
-cp .env.example .env
+# minio新增bucket/Access Policy更改public
+AWS_*=...
+
+# appkey
 sail php artisan k:g
 
 # 使用laravel-demo專案的資料庫
