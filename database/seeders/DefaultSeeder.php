@@ -18,7 +18,7 @@ class DefaultSeeder extends Seeder
     {
         $guardName = config('auth.defaults.guard');
 
-        foreach (['管理員', '規則', '權限'] as &$name) {
+        foreach (['管理員', '角色', '權限'] as &$name) {
             // 常用:viewAny,view,create,update,delete
             Permission::firstOrCreate(['name' => $name.'-任意檢視', 'guard_name' => $guardName]);
             Permission::firstOrCreate(['name' => $name.'-檢視', 'guard_name' => $guardName]);
@@ -36,13 +36,13 @@ class DefaultSeeder extends Seeder
             Permission::firstOrCreate(['name' => $name.'-任意還原刪除', 'guard_name' => $guardName]);
         }
 
-        // 新增規則
+        // 新增角色
         $role = Role::firstOrCreate(['name' => '管理員', 'guard_name' => $guardName]);
 
-        // 權限指定到規則
+        // 權限指定到角色
         $role->givePermissionTo(Permission::all());
 
-        // 指定規則到管理員
+        // 指定角色到管理員
         Admin::find(1)->assignRole('管理員');
     }
 }

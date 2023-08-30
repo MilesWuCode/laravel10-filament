@@ -12,7 +12,7 @@ class RolePolicy
      */
     public function viewAny(Admin $admin): bool
     {
-        return $admin->can('規則-任意檢視');
+        return $admin->can('角色-任意檢視');
     }
 
     /**
@@ -20,7 +20,7 @@ class RolePolicy
      */
     public function view(Admin $admin, Role $role): bool
     {
-        return $admin->can('規則-檢視');
+        return $admin->can('角色-檢視');
     }
 
     /**
@@ -28,7 +28,7 @@ class RolePolicy
      */
     public function create(Admin $admin): bool
     {
-        return $admin->can('規則-新增');
+        return $admin->can('角色-新增');
     }
 
     /**
@@ -36,7 +36,7 @@ class RolePolicy
      */
     public function update(Admin $admin, Role $role): bool
     {
-        return $admin->can('規則-更新');
+        return $admin->can('角色-更新');
     }
 
     /**
@@ -44,7 +44,7 @@ class RolePolicy
      */
     public function delete(Admin $admin, Role $role): bool
     {
-        return $admin->can('規則-刪除');
+        return $admin->can('角色-刪除');
     }
 
     /**
@@ -52,7 +52,7 @@ class RolePolicy
      */
     public function restore(Admin $admin, Role $role): bool
     {
-        return $admin->can('規則-還原');
+        return $admin->can('角色-還原');
     }
 
     /**
@@ -60,7 +60,7 @@ class RolePolicy
      */
     public function forceDelete(Admin $admin, Role $role): bool
     {
-        return $admin->can('規則-強制刪除');
+        return $admin->can('角色-強制刪除');
     }
 
     /**
@@ -68,7 +68,7 @@ class RolePolicy
      */
     public function deleteAny(Admin $admin): bool
     {
-        return $admin->hasPermissionTo('規則-任意刪除');
+        return $admin->hasPermissionTo('角色-任意刪除');
     }
 
     /**
@@ -76,7 +76,7 @@ class RolePolicy
      */
     public function restoreAny(Admin $admin, Role $role): bool
     {
-        return $admin->hasPermissionTo('規則-任意還原刪除');
+        return $admin->hasPermissionTo('角色-任意還原刪除');
     }
 
     /**
@@ -84,6 +84,6 @@ class RolePolicy
      */
     public function forceDeleteAny(Admin $admin, Role $role): bool
     {
-        return $admin->hasPermissionTo('規則-任意強制刪除');
+        return $admin->hasPermissionTo('角色-任意強制刪除');
     }
 }
