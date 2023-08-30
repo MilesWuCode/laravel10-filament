@@ -6,6 +6,7 @@ use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugi
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -56,9 +57,33 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            // 外掛
+            ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
+            // 目錄
+            ->navigation()
+            // 目錄收合(預設關)
+            ->sidebarCollapsibleOnDesktop()
+            // 群組收合開關(預設開)
+            ->collapsibleNavigationGroups()
+            ->navigationGroups([
+                '會員管理',
+                '系統',
+            ])
+            ->navigationItems([
+                NavigationItem::make('角色')
+                    ->url('/roles', shouldOpenInNewTab: false)
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->group('系統')
+                    ->sort(2),
+
+                NavigationItem::make('權限')
+                    ->url('/permissions', shouldOpenInNewTab: false)
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->group('系統')
+                    ->sort(3),
+            ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->plugin(FilamentSpatieRolesPermissionsPlugin::make());
+            ]);
     }
 }

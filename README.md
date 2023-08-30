@@ -1,8 +1,8 @@
 # Laravel10 Filament3
 
--   https://github.com/MilesWuCode/nuxt3-demo
--   https://github.com/MilesWuCode/laravel10-filament3
--   https://github.com/MilesWuCode/laravel10-demo
+-   WEB https://github.com/MilesWuCode/nuxt3-demo
+-   CMS https://github.com/MilesWuCode/laravel10-filament3
+-   API https://github.com/MilesWuCode/laravel10-demo
 
 ## 初始化
 
@@ -80,3 +80,7 @@ php artisan vendor:publish --tag=filament-tables-translations
 
 php artisan vendor:publish --tag=filament-translations
 ```
+
+---
+
+-   開發時使用圖示 https://heroicons.com/
