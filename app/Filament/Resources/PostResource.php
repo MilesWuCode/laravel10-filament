@@ -61,7 +61,7 @@ class PostResource extends Resource
                     // 或使用getSearchResultsUsing(自訂條件)和getOptionLabelUsing(自訂顯示)
                     ->getSearchResultsUsing(
                         fn (string $search) => User::select('id', DB::raw("CONCAT(id,', ',name) as name"))
-                            ->orWhere('id', 'like', "%{$search}%")
+                            ->orWhere('id', $search)
                             ->orWhere('name', 'like', "%{$search}%")
                             // ->orWhere('email', 'like', "%{$search}%")
                             ->limit(50)
