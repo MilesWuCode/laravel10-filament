@@ -13,25 +13,18 @@ use Filament\Tables\Table;
 
 class AdminResource extends Resource
 {
-    // 資料源
     protected static ?string $model = Admin::class;
 
-    // 圖示
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    // 群組
     protected static ?string $navigationGroup = '系統';
 
-    // 名稱
+    protected static ?int $navigationGroupSort = 1;
+
     protected static ?string $modelLabel = '管理員';
 
-    // 複數名
     protected static ?string $pluralModelLabel = '管理員';
 
-    // 目錄順位,在navigationGroups也可以排列
-    // protected static ?int $navigationSort = 1;
-
-    // 表單
     public static function form(Form $form): Form
     {
         return $form
@@ -51,7 +44,6 @@ class AdminResource extends Resource
             ]);
     }
 
-    // 表格
     public static function table(Table $table): Table
     {
         return $table

@@ -79,6 +79,7 @@ class UserResource extends Resource
             ]);
     }
 
+    // 列表
     public static function table(Table $table): Table
     {
         return $table

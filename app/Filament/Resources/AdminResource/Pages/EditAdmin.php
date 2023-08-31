@@ -17,7 +17,6 @@ class EditAdmin extends EditRecord
         ];
     }
 
-    // FormData填值前
     protected function mutateFormDataBeforeFill(array $data): array
     {
         $data['password'] = '';
