@@ -60,6 +60,9 @@ php artisan make:filament-resource Customer --soft-deletes
 # 檢視頁ViewRecord
 php artisan make:filament-page ViewUser --resource=UserResource --type=ViewRecord
 
+# 新增關聯資源(軟刪除,附加)
+php artisan make:filament-relation-manager CategoryResource posts title --soft-deletes --attach
+
 # 更新
 composer update
 php artisan filament:upgrade

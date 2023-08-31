@@ -28,8 +28,8 @@ class AdminResource extends Resource
     // 複數名
     protected static ?string $pluralModelLabel = '管理員';
 
-    // 順位
-    protected static ?int $navigationSort = 1;
+    // 目錄順位,在navigationGroups也可以排列
+    // protected static ?int $navigationSort = 1;
 
     // 表單
     public static function form(Form $form): Form

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\PostsRelationManager;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -27,6 +28,7 @@ class UserResource extends Resource
     // 群組
     protected static ?string $navigationGroup = '會員管理';
 
+    // 群組內順序
     protected static ?int $navigationGroupSort = 1;
 
     // 名稱
@@ -38,8 +40,8 @@ class UserResource extends Resource
     // 主要顯示欄位
     protected static ?string $recordTitleAttribute = 'name';
 
-    // 順位
-    protected static ?int $navigationSort = 1;
+    // 目錄順位,在navigationGroups也可以排列
+    // protected static ?int $navigationSort = 1;
 
     // 表單
     public static function form(Form $form): Form
@@ -71,7 +73,7 @@ class UserResource extends Resource
                     // ->enableReordering() // 排序
                     // ->customProperties(['key' => 'val']) // 客制參數
                     // ->responsiveImages() // 內訂響應式圖像
-                    // ->conversion('thumb') // 轉換
+                    ->conversion('thumb') // 轉換
                     ->disk('minio-medialibrary'),
             ]);
     }
@@ -143,7 +145,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class,
         ];
     }
 

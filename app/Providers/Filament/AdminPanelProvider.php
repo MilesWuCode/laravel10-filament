@@ -66,6 +66,7 @@ class AdminPanelProvider extends PanelProvider
             // 群組收合開關(預設開)
             ->collapsibleNavigationGroups()
             ->navigationGroups([
+                '內容管理',
                 '會員管理',
                 '系統',
             ])
