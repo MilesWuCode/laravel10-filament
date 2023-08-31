@@ -3,9 +3,11 @@
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 
 class PostsRelationManager extends RelationManager
@@ -19,15 +21,37 @@ class PostsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->label('封面')
+                    ->collection('cover')
+                    ->conversion('thumb')
+                    ->disk('minio-medialibrary'),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
+            ->paginated([10, 25, 50])
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
+
+                SpatieMediaLibraryImageColumn::make('cover')
+                    ->label('封面')
+                    ->collection('cover'),
+
+                Tables\Columns\TextColumn::make('title')
+                    ->label('標題')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('更新時間')
+                    ->dateTime('Y-m-d')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
