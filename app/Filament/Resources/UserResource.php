@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
@@ -142,10 +143,14 @@ class UserResource extends Resource
             ]);
     }
 
+    // 設定關聯
     public static function getRelations(): array
     {
         return [
-            PostsRelationManager::class,
+            // 分組
+            RelationGroup::make('Contacts', [
+                PostsRelationManager::class,
+            ]),
         ];
     }
 
