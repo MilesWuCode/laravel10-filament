@@ -22,6 +22,7 @@ class EditUser extends EditRecord
     // FormData填值前
     protected function mutateFormDataBeforeFill(array $data): array
     {
+        // Model使用$hidden就不需要清空,
         $data['password'] = '';
 
         return $data;

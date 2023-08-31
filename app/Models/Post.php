@@ -4,42 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Model implements HasMedia
+class Post extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
 
     protected $connection = 'main';
 
+    /**
+     * fillable
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'email_verified_at',
-        'provider',
-        'provider_id',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+        'title',
+        'content',
+        'user_id',
     ];
 
     /**
-     * 多筆貼文
+     * User
      */
-    public function posts(): HasMany
+    public function User(): BelongsTo
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -47,7 +40,7 @@ class User extends Model implements HasMedia
      */
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('avatar')
+        $this->addMediaCollection('cover')
             // 沒有圖片回傳預設圖片網址/路徑
             ->useFallbackUrl('/images/fallback.jpg')
             ->useFallbackUrl('/images/fallback.jpg', 'thumb')
@@ -55,7 +48,7 @@ class User extends Model implements HasMedia
             // ->useFallbackPath(public_path('/images/fallback.jpg'))
             // ->useFallbackPath(public_path('/images/fallback.jpg'), 'thumb')
             // 類型
-            ->acceptsMimeTypes(['image/jpeg'])
+            ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             // 單一檔案
             ->singleFile();
     }
@@ -66,8 +59,8 @@ class User extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(120)
-            ->height(120)
-            ->performOnCollections('avatar');
+            ->width(320)
+            ->height(160)
+            ->performOnCollections('cover');
     }
 }
