@@ -16,6 +16,9 @@ class PostsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
+        // 可以直接使用Resource的form
+        // return \App\Filament\Resources\PostResource::form($form);
+
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
@@ -32,6 +35,9 @@ class PostsRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
+        // 可以直接使用Resource的table
+        // return \App\Filament\Resources\PostResource::table($table);
+
         return $table
             ->paginated([10, 25, 50])
             ->recordTitleAttribute('title')
