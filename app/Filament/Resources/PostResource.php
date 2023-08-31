@@ -66,7 +66,7 @@ class PostResource extends Resource
                     // ->relationship('user', 'name')
                     // 或使用getSearchResultsUsing(自訂條件)和getOptionLabelUsing(自訂顯示)
                     ->getSearchResultsUsing(
-                        fn (string $search) => User::select('id', DB::raw("CONCAT(id,', ',name) as name"))
+                        fn (string $search) => User::select('id', DB::raw("CONCAT_WS(', ',id,name,email) as name"))
                             ->orWhere('id', $search)
                             ->orWhere('name', 'like', "%{$search}%")
                             // ->orWhere('email', 'like', "%{$search}%")
@@ -74,7 +74,8 @@ class PostResource extends Resource
                             ->pluck('name', 'id')
                     )
                     // 使用getOptionLabelUsing性能降低
-                    ->getOptionLabelUsing(fn ($value): ?string => User::find($value)?->id.', '.User::find($value)?->name)
+                    ->getOptionLabelUsing(fn ($value): ?string => implode(', ', User::find($value)->only('id', 'name', 'email')))
+                    // 或使用$table->string('full_name')->virtualAs('concat(first_name, \' \', last_name)');建立一個欄位顯示
                     ->required(),
             ]);
     }
