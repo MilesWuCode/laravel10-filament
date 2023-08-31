@@ -7,10 +7,12 @@ use App\Models\Post;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
 
@@ -53,6 +55,10 @@ class PostResource extends Resource
                     ->conversion('thumb')
                     ->disk('minio-medialibrary'),
 
+                SpatieTagsInput::make('tags')
+                    ->label('標籤')
+                    ->type('categories'),
+
                 Forms\Components\Select::make('user_id')
                     ->label('用戶')
                     ->searchable()
@@ -89,6 +95,10 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label('標題')
                     ->searchable(),
+
+                SpatieTagsColumn::make('tags')
+                    ->label('標籤')
+                    ->type('categories'),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('更新時間')
