@@ -4,9 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BannerResource\Pages;
 use App\Models\Banner;
+use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 
 class BannerResource extends Resource
@@ -37,15 +40,44 @@ class BannerResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('名稱')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('link')
+                    ->label('連結')
+                    ->required()
+                    ->maxLength(255),
+
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->label('封面')
+                    ->collection('cover')
+                    ->conversion('thumb')
+                    ->disk('minio-medialibrary'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated([10, 25, 50])
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
+
+                SpatieMediaLibraryImageColumn::make('cover')
+                    ->label('封面')
+                    ->collection('cover'),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->label('名稱')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('link')
+                    ->label('連結')
+                    ->searchable(),
             ])
             ->filters([
                 //
