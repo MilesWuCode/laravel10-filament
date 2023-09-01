@@ -29,7 +29,7 @@ class UserResource extends Resource
     // 群組
     protected static ?string $navigationGroup = '會員管理';
 
-    // 群組內順序
+    // 群組順序
     protected static ?int $navigationGroupSort = 1;
 
     // 名稱
@@ -42,7 +42,7 @@ class UserResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
 
     // 目錄順位,在navigationGroups也可以排列
-    // protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 1;
 
     // 表單
     public static function form(Form $form): Form
