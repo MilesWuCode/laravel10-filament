@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -13,6 +15,7 @@ class User extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use LogsActivity;
 
     protected $connection = 'main';
 
@@ -69,5 +72,11 @@ class User extends Model implements HasMedia
             ->width(120)
             ->height(120)
             ->performOnCollections('avatar');
+    }
+
+    // 操作記錄
+    public function getActivitylogOptions()
+    {
+        return LogOptions::defaults()->logFillable();
     }
 }
