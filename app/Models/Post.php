@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivityTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -17,7 +16,7 @@ class Post extends Model implements HasMedia
     use HasFactory;
     use HasTags;
     use InteractsWithMedia;
-    use LogsActivity;
+    use LogsActivityTrait;
 
     protected $connection = 'main';
 
@@ -67,11 +66,5 @@ class Post extends Model implements HasMedia
             ->width(320)
             ->height(160)
             ->performOnCollections('cover');
-    }
-
-    // 操作記錄
-    public function getActivitylogOptions()
-    {
-        return LogOptions::defaults()->logFillable();
     }
 }
