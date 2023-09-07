@@ -23,6 +23,6 @@ services:
             - sail
 networks:
     sail:
-        name: laravel10-demo_sail
+        name: laravel10-api_sail
         external: true
         driver: bridge

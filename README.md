@@ -2,7 +2,7 @@
 
 -   WEB https://github.com/MilesWuCode/nuxt3-demo
 -   CMS https://github.com/MilesWuCode/laravel10-filament3
--   API https://github.com/MilesWuCode/laravel10-demo
+-   API https://github.com/MilesWuCode/laravel10-api
 
 ## 初始化
 
@@ -30,7 +30,7 @@ AWS_*=...
 # appkey
 sail php artisan k:g
 
-# 使用laravel-demo專案的資料庫
+# 使用laravel10-api專案的資料庫
 # 建立資料庫/檢查帳號權限
 # 資料庫遷移
 sail php artisan migrate
