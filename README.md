@@ -39,7 +39,8 @@ sail php artisan migrate
 sail php artisan make:filament-user
 
 # 新增預設權限
-sail php artisan db:seed DefaultPermissionSeeder
+sail php artisan db:seed DefaultSeeder
+sail php artisan db:seed PolicySeeder
 
 # 關閉
 sail down
