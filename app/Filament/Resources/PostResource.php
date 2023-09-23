@@ -26,7 +26,7 @@ class PostResource extends Resource
     protected static ?string $navigationGroup = '內容管理';
 
     // 群組順序
-    protected static ?int $navigationGroupSort = 1;
+    protected static ?int $navigationGroupSort = 2;
 
     // 名稱
     protected static ?string $modelLabel = '貼文';

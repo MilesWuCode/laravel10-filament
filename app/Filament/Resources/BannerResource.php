@@ -48,6 +48,7 @@ class BannerResource extends Resource
                 Forms\Components\TextInput::make('link')
                     ->label('連結')
                     ->required()
+                    ->url()
                     ->maxLength(255),
 
                 SpatieMediaLibraryFileUpload::make('cover')
