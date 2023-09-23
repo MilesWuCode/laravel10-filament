@@ -18,8 +18,8 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 # database...wip
 mysql -u root -p
-CREATE DATABASE IF NOT EXISTS `laravel_filament3`;
-GRANT ALL PRIVILEGES ON  `laravel_filament3`.* TO 'sail'@'%';
+CREATE DATABASE IF NOT EXISTS `laravel10_filament3`;
+GRANT ALL PRIVILEGES ON  `laravel10_filament3`.* TO 'sail'@'%';
 
 # 容器啓動
 sail up -d
