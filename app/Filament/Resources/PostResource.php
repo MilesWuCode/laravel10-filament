@@ -22,11 +22,8 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    // 群組
+    // 群組名稱
     protected static ?string $navigationGroup = '內容管理';
-
-    // 群組順序
-    protected static ?int $navigationGroupSort = 1;
 
     // 名稱
     protected static ?string $modelLabel = '貼文';

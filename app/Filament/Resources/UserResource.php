@@ -26,11 +26,8 @@ class UserResource extends Resource
     // 圖示
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    // 群組
+    // 群組名稱
     protected static ?string $navigationGroup = '會員管理';
-
-    // 群組順序
-    protected static ?int $navigationGroupSort = 1;
 
     // 名稱
     protected static ?string $modelLabel = '用戶';
@@ -84,6 +81,8 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            // 預設排序
+            ->defaultSort('id', 'desc')
             // 分頁
             ->paginated([10, 25, 50])
             // 欄位

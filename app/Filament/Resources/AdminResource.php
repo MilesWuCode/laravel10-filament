@@ -19,8 +19,6 @@ class AdminResource extends Resource
 
     protected static ?string $navigationGroup = '系統';
 
-    protected static ?int $navigationGroupSort = 1;
-
     protected static ?string $modelLabel = '管理員';
 
     protected static ?string $pluralModelLabel = '管理員';
