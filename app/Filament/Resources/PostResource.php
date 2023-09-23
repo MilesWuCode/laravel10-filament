@@ -26,7 +26,7 @@ class PostResource extends Resource
     protected static ?string $navigationGroup = '內容管理';
 
     // 群組順序
-    protected static ?int $navigationGroupSort = 2;
+    protected static ?int $navigationGroupSort = 1;
 
     // 名稱
     protected static ?string $modelLabel = '貼文';
@@ -38,7 +38,7 @@ class PostResource extends Resource
     protected static ?string $recordTitleAttribute = 'title';
 
     // 目錄順位,在navigationGroups也可以排列
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
