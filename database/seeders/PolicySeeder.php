@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PolicySeeder extends Seeder
 {
@@ -33,5 +35,14 @@ class PolicySeeder extends Seeder
             Permission::firstOrCreate(['name' => $name.'-任意強制刪除', 'guard_name' => $guardName]);
             Permission::firstOrCreate(['name' => $name.'-任意還原刪除', 'guard_name' => $guardName]);
         }
+
+        // 新增角色
+        $role = Role::firstOrCreate(['name' => '管理員', 'guard_name' => $guardName]);
+
+        // 權限指定到角色
+        $role->givePermissionTo(Permission::all());
+
+        // 指定角色到管理員
+        Admin::find(1)->assignRole('管理員');
     }
 }
