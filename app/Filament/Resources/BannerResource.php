@@ -61,6 +61,13 @@ class BannerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order_column')
+            ->paginatedWhileReordering()
+            ->reorderRecordsTriggerAction(
+                fn (Action $action, bool $isReordering) => $action
+                    ->button()
+                    ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
+            )
             ->defaultSort('order_column', 'desc')
             ->paginated([10, 25, 50])
             ->columns([
@@ -75,8 +82,8 @@ class BannerResource extends Resource
                     ->label('名稱')
                     ->searchable(),
 
-                // Tables\Columns\TextColumn::make('order_column')
-                //     ->label('排序'),
+                Tables\Columns\TextColumn::make('order_column')
+                    ->label('排序'),
             ])
             ->filters([
                 //
