@@ -9,8 +9,10 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class BannerResource extends Resource
 {
@@ -59,11 +61,11 @@ class BannerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('order_column', 'desc')
             ->paginated([10, 25, 50])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable(),
+                    ->label('ID'),
 
                 SpatieMediaLibraryImageColumn::make('cover')
                     ->label('封面')
@@ -73,15 +75,20 @@ class BannerResource extends Resource
                     ->label('名稱')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('link')
-                    ->label('連結')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('order_column')
+                    ->label('排序'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+
+                Action::make('up')
+                    ->action(fn (Model $record) => $record->moveOrderDown()),
+
+                Action::make('down')
+                    ->action(fn (Model $record) => $record->moveOrderUp()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
