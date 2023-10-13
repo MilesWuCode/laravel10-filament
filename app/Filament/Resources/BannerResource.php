@@ -75,8 +75,8 @@ class BannerResource extends Resource
                     ->label('名稱')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('order_column')
-                    ->label('排序'),
+                // Tables\Columns\TextColumn::make('order_column')
+                //     ->label('排序'),
             ])
             ->filters([
                 //
