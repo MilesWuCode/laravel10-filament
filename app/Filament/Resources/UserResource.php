@@ -18,7 +18,6 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-
 class UserResource extends Resource
 {
     // 資料源
@@ -62,7 +61,7 @@ class UserResource extends Resource
                     ->label('密碼')
                     ->password()
                     ->required()
-                    ->hidden(fn (User $uesr):bool => !$uesr->provider)
+                    ->hidden(fn (User $uesr): bool => ! $uesr->provider)
                     ->minLength(8)
                     ->maxLength(255),
 
@@ -86,6 +85,10 @@ class UserResource extends Resource
             ->defaultSort('id', 'desc')
             // 分頁
             ->paginated([10, 25, 50])
+            // 延遲加載
+            // ->deferLoading()
+            // 輪循時間
+            // ->poll('10s')
             // 欄位
             ->columns([
                 Tables\Columns\TextColumn::make('id')
@@ -175,9 +178,9 @@ class UserResource extends Resource
             ->schema([
                 TextEntry::make('name'),
 
-                TextEntry::make('provider')->hidden(fn (User $uesr):bool => !$uesr->provider),
+                TextEntry::make('provider')->hidden(fn (User $uesr): bool => ! $uesr->provider),
 
-                TextEntry::make('provider_id')->hidden(fn (User $uesr):bool => !$uesr->provider),
+                TextEntry::make('provider_id')->hidden(fn (User $uesr): bool => ! $uesr->provider),
 
                 SpatieMediaLibraryImageEntry::make('avatar')
                     ->collection('avatar')
