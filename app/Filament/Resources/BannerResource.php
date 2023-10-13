@@ -85,10 +85,14 @@ class BannerResource extends Resource
                 Tables\Actions\EditAction::make(),
 
                 Action::make('up')
-                    ->action(fn (Model $record) => $record->moveOrderDown()),
+                    ->label('Up')
+                    ->action(fn (Model $record) => $record->moveOrderDown())
+                    ->icon('heroicon-m-arrow-up'),
 
                 Action::make('down')
-                    ->action(fn (Model $record) => $record->moveOrderUp()),
+                    ->label('Down')
+                    ->action(fn (Model $record) => $record->moveOrderUp())
+                    ->icon('heroicon-m-arrow-down'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
