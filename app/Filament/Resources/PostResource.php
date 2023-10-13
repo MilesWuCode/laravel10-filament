@@ -80,6 +80,7 @@ class PostResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->paginated([10, 25, 50])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
