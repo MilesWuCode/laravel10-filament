@@ -68,7 +68,7 @@ class BannerResource extends Resource
                     ->button()
                     ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
             ) // 排序開關
-            // ->defaultSort('order_column', 'desc')
+            ->defaultSort('order_column', 'desc') // 需要排序功能還是可以使用資料顯示順序
             ->paginated([10, 25, 50])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
