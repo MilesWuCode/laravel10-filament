@@ -61,14 +61,14 @@ class BannerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->reorderable('order_column')
-            ->paginatedWhileReordering()
+            ->reorderable('order_column') // 排序欄位
+            ->paginatedWhileReordering() // 排序使用分頁
             ->reorderRecordsTriggerAction(
                 fn (Action $action, bool $isReordering) => $action
                     ->button()
                     ->label($isReordering ? 'Disable reordering' : 'Enable reordering'),
-            )
-            ->defaultSort('order_column', 'desc')
+            ) // 排序開關
+            // ->defaultSort('order_column', 'desc')
             ->paginated([10, 25, 50])
             ->columns([
                 Tables\Columns\TextColumn::make('id')
@@ -91,15 +91,17 @@ class BannerResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
 
-                Action::make('up')
-                    ->label('Up')
-                    ->action(fn (Model $record) => $record->moveOrderDown())
-                    ->icon('heroicon-m-arrow-up'),
+                // 自己做的排序
+                // Action::make('up')
+                //     ->label('Up')
+                //     ->action(fn (Model $record) => $record->moveOrderUp())
+                //     ->icon('heroicon-m-arrow-up'),
 
-                Action::make('down')
-                    ->label('Down')
-                    ->action(fn (Model $record) => $record->moveOrderUp())
-                    ->icon('heroicon-m-arrow-down'),
+                // 自己做的排序
+                // Action::make('down')
+                //     ->label('Down')
+                //     ->action(fn (Model $record) => $record->moveOrderDown())
+                //     ->icon('heroicon-m-arrow-down'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
