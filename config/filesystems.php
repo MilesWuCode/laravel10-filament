@@ -83,6 +83,11 @@ return [
             'prefix' => 'medialibrary',
         ],
 
+        'article' => [
+            'driver' => 'scoped',
+            'disk' => 'minio',
+            'prefix' => 'article',
+        ],
     ],
 
     /*

@@ -61,7 +61,7 @@ class UserResource extends Resource
                     ->label('密碼')
                     ->password()
                     ->required()
-                    ->hidden(fn (User $uesr): bool => ! $uesr->provider)
+                    ->hidden(fn (User $uesr): bool => (bool) $uesr->provider)
                     ->minLength(8)
                     ->maxLength(255),
 

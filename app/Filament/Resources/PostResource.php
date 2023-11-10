@@ -6,6 +6,7 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
@@ -55,6 +56,13 @@ class PostResource extends Resource
                 SpatieTagsInput::make('tags')
                     ->label('標籤')
                     ->type('categories'),
+
+                RichEditor::make('content')
+                    ->label('內文')
+                    ->fileAttachmentsDisk('article')
+                    // ->fileAttachmentsDirectory('article') // filesystems.php有設prefix就不需要再設
+                    ->fileAttachmentsVisibility('public')
+                    ->columnSpan(2),
 
                 Forms\Components\Select::make('user_id')
                     ->label('用戶')
