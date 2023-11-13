@@ -51,7 +51,7 @@ class PostResource extends Resource
                     ->label('封面')
                     ->collection('cover')
                     ->conversion('thumb')
-                    ->disk('minio-medialibrary'),
+                    ->disk('medialibrary'),
 
                 SpatieTagsInput::make('tags')
                     ->label('標籤')

@@ -69,20 +69,14 @@ return [
             'throw' => false,
         ],
 
-        // 前綴
-        'minio-temporary' => [
-            'driver' => 'scoped',
-            'disk' => 'minio',
-            'prefix' => 'temporary',
-        ],
-
-        // 前綴
-        'minio-medialibrary' => [
+        // 使用medialibrary套件管理關聯檔案
+        'medialibrary' => [
             'driver' => 'scoped',
             'disk' => 'minio',
             'prefix' => 'medialibrary',
         ],
 
+        // 文章內文
         'article' => [
             'driver' => 'scoped',
             'disk' => 'minio',

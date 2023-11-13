@@ -29,7 +29,7 @@ class PostsRelationManager extends RelationManager
                     ->label('封面')
                     ->collection('cover')
                     ->conversion('thumb')
-                    ->disk('minio-medialibrary'),
+                    ->disk('medialibrary'),
             ]);
     }
 

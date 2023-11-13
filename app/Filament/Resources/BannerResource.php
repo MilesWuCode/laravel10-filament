@@ -54,7 +54,7 @@ class BannerResource extends Resource
                     ->label('封面')
                     ->collection('cover')
                     ->conversion('thumb')
-                    ->disk('minio-medialibrary'),
+                    ->disk('medialibrary'),
             ]);
     }
 

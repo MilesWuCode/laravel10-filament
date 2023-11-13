@@ -73,7 +73,7 @@ class UserResource extends Resource
                     // ->customProperties(['key' => 'val']) // 客制參數
                     // ->responsiveImages() // 內訂響應式圖像
                     ->conversion('thumb') // 轉換
-                    ->disk('minio-medialibrary'),
+                    ->disk('medialibrary'),
             ]);
     }
 
@@ -185,7 +185,7 @@ class UserResource extends Resource
                 SpatieMediaLibraryImageEntry::make('avatar')
                     ->collection('avatar')
                     // ->conversion('thumb') // 使用縮圖
-                    ->disk('minio-medialibrary'),
+                    ->disk('medialibrary'),
             ]);
     }
 }
