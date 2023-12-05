@@ -5,7 +5,6 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Support\Facades\Hash;
 
 class EditUser extends EditRecord
 {
@@ -23,7 +22,7 @@ class EditUser extends EditRecord
     protected function mutateFormDataBeforeFill(array $data): array
     {
         // Model使用$hidden就不需要清空,
-        $data['password'] = '';
+        // $data['password'] = '';
 
         return $data;
     }
@@ -31,12 +30,6 @@ class EditUser extends EditRecord
     // FormData儲存前
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        if (is_null($data['password'])) {
-            unset($data['password']);
-        } else {
-            $data['password'] = Hash::make($data['password']);
-        }
-
         return $data;
     }
 

@@ -17,6 +17,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -60,7 +61,9 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->label('密碼')
                     ->password()
-                    ->required()
+                    ->required(fn (string $operation): bool => $operation === 'create')
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
                     ->hidden(fn (User $uesr): bool => (bool) $uesr->provider)
                     ->minLength(8)
                     ->maxLength(255),
