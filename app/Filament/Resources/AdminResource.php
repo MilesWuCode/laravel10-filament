@@ -15,7 +15,8 @@ class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+    // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = '系統';
 

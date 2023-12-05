@@ -6,6 +6,7 @@ use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugi
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -61,25 +62,42 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             // 目錄
             ->navigation()
-            // 目錄收合(預設關)
+            // 目錄收合
             ->sidebarCollapsibleOnDesktop()
-            // 群組收合開關(預設開)
+            // 群組收合開關顯示
             ->collapsibleNavigationGroups()
+            // 註冊群組
             ->navigationGroups([
-                '內容管理',
-                '會員管理',
-                '系統',
+                NavigationGroup::make()
+                    ->label('內容管理')
+                    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+                    ->icon('heroicon-o-rectangle-stack'),
+
+                NavigationGroup::make()
+                    ->label('會員管理')
+                    ->icon('heroicon-o-rectangle-stack'),
+
+                NavigationGroup::make()
+                    ->label('系統')
+                    ->icon('heroicon-o-rectangle-stack'),
+
             ])
             ->navigationItems([
                 NavigationItem::make('角色')
                     ->url('/roles', shouldOpenInNewTab: false)
-                    ->icon('heroicon-o-cog-6-tooth')
+                    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+                    // ->icon('heroicon-o-cog-6-tooth')
                     ->group('系統')
                     ->sort(2),
+                // 權限
+                // ->visible(fn(): bool => auth()->user()->can('view-analytics'))
+                // 或
+                // ->hidden(fn(): bool => ! auth()->user()->can('view-analytics')),
 
                 NavigationItem::make('權限')
                     ->url('/permissions', shouldOpenInNewTab: false)
-                    ->icon('heroicon-o-cog-6-tooth')
+                    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+                    // ->icon('heroicon-o-cog-6-tooth')
                     ->group('系統')
                     ->sort(3),
             ])

@@ -23,8 +23,8 @@ class UserResource extends Resource
     // 資料源
     protected static ?string $model = User::class;
 
-    // 圖示
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+    // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // 群組名稱
     protected static ?string $navigationGroup = '會員管理';

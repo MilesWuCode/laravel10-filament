@@ -18,7 +18,8 @@ class BannerResource extends Resource
 {
     protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
+    // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // 群組名稱
     protected static ?string $navigationGroup = '內容管理';
@@ -32,8 +33,8 @@ class BannerResource extends Resource
     // 主要顯示欄位
     protected static ?string $recordTitleAttribute = 'name';
 
-    // 目錄順位,在navigationGroups也可以排列
-    protected static ?int $navigationSort = 2;
+    // 目錄順位
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
