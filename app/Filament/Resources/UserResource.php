@@ -27,6 +27,9 @@ class UserResource extends Resource
     // 圖示,若群組有icon就子項不可設定,若子項有icon群組不可設定
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // 自訂網址
+    // protected static ?string $slug = 'users';
+
     // 群組名稱
     protected static ?string $navigationGroup = '會員管理';
 
@@ -148,10 +151,11 @@ class UserResource extends Resource
             // 無資料時
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ])
-            // 使用recordAction和recordUrl成為視窗view
-            ->recordAction(Tables\Actions\ViewAction::class)
-            ->recordUrl(null);
+            ]);
+        // 使用recordAction(...)和recordUrl(null),點擊list彈出視窗view
+        // 若有infolist就不需要使用recordAction(...)和recordUrl(null)
+        // ->recordAction(Tables\Actions\ViewAction::class)
+        // ->recordUrl(null);
     }
 
     // 設定關聯
@@ -179,6 +183,7 @@ class UserResource extends Resource
     }
 
     // 自訂義view
+    // ViewRecord可以寫infolist
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -195,4 +200,13 @@ class UserResource extends Resource
                     ->disk('medialibrary'),
             ]);
     }
+
+    // 子項導覽目錄
+    // public static function getRecordSubNavigation(Page $page): array
+    // {
+    //     return $page->generateNavigationItems([
+    //         Pages\ViewUser::class,
+    //         Pages\EditUser::class,
+    //     ]);
+    // }
 }
