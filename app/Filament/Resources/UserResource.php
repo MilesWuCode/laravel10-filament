@@ -36,7 +36,7 @@ class UserResource extends Resource
     // 複數名
     protected static ?string $pluralModelLabel = '用戶';
 
-    // 主要顯示欄位
+    // 主要顯示欄位,全域serch,關聯
     protected static ?string $recordTitleAttribute = 'name';
 
     // 目錄順位,在navigationGroups也可以排列
@@ -148,7 +148,10 @@ class UserResource extends Resource
             // 無資料時
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ]);
+            ])
+            // 使用recordAction和recordUrl成為視窗view
+            ->recordAction(Tables\Actions\ViewAction::class)
+            ->recordUrl(null);
     }
 
     // 設定關聯
@@ -168,9 +171,10 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
-            // view單獨頁
+            // view頁
+            // php artisan make:filament-page ViewUser --resource=UserResource --type=ViewRecord
             'view' => Pages\ViewUser::route('/{record}'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 
