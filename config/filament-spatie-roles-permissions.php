@@ -95,7 +95,7 @@ return [
         ],
 
         'excluded_policy_models' => [
-            \App\Models\User::class,
+            \App\Models\Admin::class,
         ],
 
         /*
@@ -105,7 +105,7 @@ return [
             //'view-log'
         ],
 
-        'user_model' => \App\Models\User::class,
+        'user_model' => \App\Models\Admin::class,
 
         'policies_namespace' => 'App\Policies',
     ],
